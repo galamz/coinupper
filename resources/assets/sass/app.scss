@@ -1,0 +1,20 @@
+
+// Fonts
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+//@import "variables";
+
+$fa-css-prefix:       icon;
+
+// Bootstrap
+@import "~font-awesome/scss/font-awesome";
+@import "~bootstrap/scss/bootstrap";
+@import "DataTables4";
+
+
+.align-middle{
+  th,td{
+    @extend .align-middle;
+  }
+}
