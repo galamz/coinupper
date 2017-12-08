@@ -170,6 +170,8 @@ return [
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Yangqi\Htmldom\HtmldomServiceProvider::class,
+
 
 
 
@@ -234,6 +236,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Htmldom' => Yangqi\Htmldom\Htmldom::class,
+
 
 
     ],

@@ -42,15 +42,30 @@ class CryptoCurrency extends Model
 
     protected $fillable = [
         'name',
-        'iso_code',
+        'symbol',
         'slug',
         'algorithm',
         'overview',
         'logo',
-        'price',
-        'market_cap',
-        'volume_24h',
-        'change_24h',
+
+        'price_usd',
+        'price_btc',
+
+        'market_cap_usd',
+        'market_cap_btc',
+
+        'volume_24h_usd',
+        'volume_24h_btc',
+
+        'change_1h_usd',
+        'change_1h_btc',
+
+        'change_24h_usd',
+        'change_24h_btc',
+
+        'change_7d_usd',
+        'change_7d_btc',
+
         'circulating',
         'mini_chart',
     ];

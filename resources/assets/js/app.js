@@ -10,12 +10,13 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 $(document).ready(function() {
-    $('.table-data').DataTable({
+    var table = $('.table-data').DataTable({
         "lengthChange": false,
         "searching": false,
         "paginate": false,
         "info": false
     });
+
 });
 
 /**

@@ -15,7 +15,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        $data['CryptoCurrency'] = $CryptoCurrency  = CryptoCurrency::get();
+        $data['CryptoCurrency'] = $CryptoCurrency  = CryptoCurrency::orderBy('id')->paginate(100);
+
+//        return $CryptoCurrency;
 
         return view('home',$data);
     }

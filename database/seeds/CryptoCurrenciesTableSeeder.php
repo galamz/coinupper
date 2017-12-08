@@ -21,7 +21,7 @@ class CryptoCurrenciesTableSeeder extends Seeder
 
             \App\CryptoCurrency::create([
                 'name' => $Faker->userName,
-                'iso_code' => $Faker->iso8601(4) ,
+                'symbol' => $Faker->iso8601(4) ,
                 'slug' => $Faker->slug(6),
                 'algorithm' => $Faker->slug(6),
                 'overview' => $Faker->text(200),

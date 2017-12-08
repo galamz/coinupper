@@ -16,18 +16,39 @@ class CreateCryptoCurrenciesTable extends Migration
         Schema::create('crypto_currencies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('iso_code')->nullable();
+            $table->string('symbol')->nullable();
             $table->string('slug')->nullable();
             $table->string('algorithm')->nullable();
             $table->text('overview')->nullable();
             $table->string('logo')->nullable();
-            $table->float('price')->nullable();
-            $table->float('market_cap')->nullable();
-            $table->float('volume_24h')->nullable();
-            $table->float('change_24h')->nullable();
-            $table->float('circulating')->nullable();
+
+            $table->decimal('price_usd',19,6)->nullable();
+            $table->decimal('price_btc',19,6)->nullable();
+
+            $table->decimal('market_cap_usd',19,6)->nullable();
+            $table->decimal('market_cap_btc',19,6)->nullable();
+
+            $table->decimal('volume_24h_usd',19,6)->nullable();
+            $table->decimal('volume_24h_btc',19,6)->nullable();
+
+            $table->decimal('change_7d_usd',19,6)->nullable();
+            $table->decimal('change_7d_btc',19,6)->nullable();
+
+            $table->decimal('change_24h_usd',19,6)->nullable();
+            $table->decimal('change_24h_btc',19,6)->nullable();
+
+            $table->decimal('change_1h_usd',19,6)->nullable();
+            $table->decimal('change_1h_btc',19,6)->nullable();
+
+            $table->decimal('circulating',19,6)->nullable();
             $table->text('mini_chart')->nullable();
             $table->timestamps();
+
+            // scraper
+
+            $table->string('url')->nullable();
+            $table->string('url_data')->nullable();
+
         });
     }
 
