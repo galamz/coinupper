@@ -5,16 +5,55 @@
 // Variables
 @import "variables";
 
-$fa-css-prefix:       icon;
-
+$white : white;
 // Bootstrap
 @import "~font-awesome/scss/font-awesome";
 @import "~bootstrap/scss/bootstrap";
 @import "DataTables4";
 
+.navbar{
+  border-bottom: 1px solid darken($white,10);
+}
+
+
+.currency-name{
+  position: relative;
+  display: block;
+  line-height: 1rem;
+  .rounded-circle{
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: white;
+  }
+  @include hover {
+    //color: $link-hover-color;
+    text-decoration: none;
+  }
+
+
+}
 
 .align-middle{
   th,td{
     @extend .align-middle;
   }
 }
+
+.dt-bootstrap4{
+  &.container-fluid{
+     padding-right: 0;
+     padding-left: 0;
+  }
+}
+
+
+.tab-content {
+  > .tab-pane {}
+  > .active {
+    background-color: $nav-tabs-link-active-bg;
+    border: $nav-tabs-border-width solid $nav-tabs-link-active-border-color;
+    @extend .border-top-0;
+  }
+}
+

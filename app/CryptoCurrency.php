@@ -67,6 +67,10 @@ class CryptoCurrency extends Model
         'change_7d_btc',
 
         'circulating',
+        'circulating_url',
         'mini_chart',
+
+        'url',
+        'url_data'
     ];
 }

@@ -41,7 +41,9 @@ class CryptoCurrencyController extends Controller
 
     public function show($slug)
     {
-        return CryptoCurrency::whereSlug($slug)->firstOrFail();
+        $data['CryptoCurrency'] = $CryptoCurrency = CryptoCurrency::whereSlug($slug)->firstOrFail();
+
+        return view('currencies.show',$data);
     }
 
     /**

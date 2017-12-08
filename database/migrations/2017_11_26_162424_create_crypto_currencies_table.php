@@ -41,6 +41,7 @@ class CreateCryptoCurrenciesTable extends Migration
             $table->decimal('change_1h_btc',19,6)->nullable();
 
             $table->decimal('circulating',19,6)->nullable();
+            $table->string('circulating_url')->nullable();
             $table->text('mini_chart')->nullable();
             $table->timestamps();
 
