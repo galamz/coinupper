@@ -38,6 +38,11 @@
         @yield('content')
     </div>
 
+
+    <div class="bg-dark py-3 text-center text-white">
+        hello
+    </div>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

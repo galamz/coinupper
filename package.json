@@ -21,6 +21,7 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
+        "bootstrap4c-chosen": "^1.0.5",
         "datatables.net": "^1.10.16",
         "datatables.net-bs4": "^1.10.16",
         "holderjs": "^2.9.4"
