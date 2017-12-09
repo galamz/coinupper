@@ -21,3 +21,5 @@ Route::get('currencies/{slug}','CryptoCurrencyController@show')->name('currencie
 
 
 Route::get('get','CoinMarketCapController@index');
+Route::get('bitcoin','CoinMarketCapController@show');
+

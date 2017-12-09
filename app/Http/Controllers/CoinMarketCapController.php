@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CryptoCurrency;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use function PHPSTORM_META\type;
@@ -170,6 +171,22 @@ class CoinMarketCapController extends Controller
 
         return $data;
 
+
+    }
+
+
+    public function show(){
+
+        $timeStar = 1367174841000;
+        $timeEnd = Carbon::now()->timestamp.'000';
+
+        $client = new Client;
+
+        $html = $client->get('https://graphs.coinmarketcap.com/currencies/bitcoin/'.$timeStar.'/'.$timeEnd.'/')->getBody();
+
+        $data =  json_decode($html);
+
+        return response()->json($data);
 
     }
 }

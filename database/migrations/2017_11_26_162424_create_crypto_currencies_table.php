@@ -16,6 +16,7 @@ class CreateCryptoCurrenciesTable extends Migration
         Schema::create('crypto_currencies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
+            $table->string('full_name')->nullable();
             $table->string('symbol')->nullable();
             $table->string('slug')->nullable();
             $table->string('algorithm')->nullable();
@@ -41,6 +42,7 @@ class CreateCryptoCurrenciesTable extends Migration
             $table->decimal('change_1h_btc',19,6)->nullable();
 
             $table->decimal('circulating',19,6)->nullable();
+            $table->decimal('max_circulating',19,6)->nullable();
             $table->string('circulating_url')->nullable();
             $table->text('mini_chart')->nullable();
             $table->timestamps();
