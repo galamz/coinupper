@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CryptoCurrency;
+use App\Data;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -11,10 +12,11 @@ use Yangqi\Htmldom\Htmldom;
 
 class CoinMarketCapController extends Controller
 {
-    public static $domain = 'https://coinmarketcap.com/';
+    public static $domain           = 'https://coinmarketcap.com/';
 
-    public static $path_all = 'all/views/all/';
+    public static $domain_graphs    = 'https://graphs.coinmarketcap.com/';
 
+    public static $path_all         = 'all/views/all/';
 
 
     protected static function nameCurrency($tr){
@@ -102,7 +104,7 @@ class CoinMarketCapController extends Controller
 
     protected static function url($tr){
         $url =  $tr->find('.currency-name-container',0)->href;
-        return self::$domain.$url;
+        return $url;
     }
 
     protected static function volume_btc($tr){
@@ -163,7 +165,7 @@ class CoinMarketCapController extends Controller
                     'circulating'       => self::circulating_supply($tr),
                     'circulating_url'   => self::circulating_url($tr),
 
-                    'url'               =>self::url($tr)
+                    'url'               => self::url($tr)
                 ]
             );
 
@@ -180,13 +182,44 @@ class CoinMarketCapController extends Controller
         $timeStar = 1367174841000;
         $timeEnd = Carbon::now()->timestamp.'000';
 
+
+        $coin = CryptoCurrency::orderBy('id')->find(1);
+
         $client = new Client;
 
-        $html = $client->get('https://graphs.coinmarketcap.com/currencies/bitcoin/'.$timeStar.'/'.$timeEnd.'/')->getBody();
+        $html = $client->get(self::$domain_graphs.$coin->url.$timeStar.'/'.$timeEnd.'/')->getBody();
 
         $data =  json_decode($html);
 
-        return response()->json($data);
+        $data = collect($data)->toArray();
+
+        $NewArray = [];
+        $i = 0;
+        foreach($data['market_cap_by_available_supply'] as $value) {
+            $NewArray = array_unique(array_merge(array_merge(array_merge($value, $data['price_usd'][$i]),$data['price_btc'][$i]),$data['volume_usd'][$i]));
+            $i++;
+
+            $time = Carbon::createFromTimestampUTC(substr($NewArray[0],0,-3))->toDateTimeString();
+
+            $data[] = Data::firstOrCreate(
+                ['time' => $time,'id_crypto_currencie' => $coin->id],
+                [
+                    'time'                   => $time,
+                    'id_crypto_currencie'    => $coin->id,
+                    'market_cap_by_available_supply'              => $NewArray[1],
+                    'price_usd'              => $NewArray[3],
+                    'price_btc'              => $NewArray[5],
+                    'volume_usd'             => $NewArray[7],
+                ]
+            );
+
+
+        }
+
+
+        //$data = array_unique($NewArray[0]);
+
+       return response()->json($data);
 
     }
 }

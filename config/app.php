@@ -171,6 +171,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Yangqi\Htmldom\HtmldomServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
 
 
@@ -237,6 +238,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Htmldom' => Yangqi\Htmldom\Htmldom::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
 
 

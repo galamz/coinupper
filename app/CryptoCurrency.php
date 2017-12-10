@@ -36,6 +36,42 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereVolume24h($value)
+ * @property string|null $full_name
+ * @property string|null $symbol
+ * @property float|null $price_usd
+ * @property float|null $price_btc
+ * @property float|null $market_cap_usd
+ * @property float|null $market_cap_btc
+ * @property float|null $volume_24h_usd
+ * @property float|null $volume_24h_btc
+ * @property float|null $change_7d_usd
+ * @property float|null $change_7d_btc
+ * @property float|null $change_24h_usd
+ * @property float|null $change_24h_btc
+ * @property float|null $change_1h_usd
+ * @property float|null $change_1h_btc
+ * @property float|null $max_circulating
+ * @property string|null $circulating_url
+ * @property string|null $url
+ * @property string|null $url_data
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereChange1hBtc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereChange1hUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereChange24hBtc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereChange24hUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereChange7dBtc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereChange7dUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereCirculatingUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereFullName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereMarketCapBtc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereMarketCapUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereMaxCirculating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency wherePriceBtc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency wherePriceUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereSymbol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereUrlData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereVolume24hBtc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereVolume24hUsd($value)
  */
 class CryptoCurrency extends Model
 {

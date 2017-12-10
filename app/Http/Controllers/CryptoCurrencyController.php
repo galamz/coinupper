@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CryptoCurrency;
+use App\Data;
 use Illuminate\Http\Request;
 
 class CryptoCurrencyController extends Controller
@@ -42,6 +43,12 @@ class CryptoCurrencyController extends Controller
     public function show($slug)
     {
         $data['CryptoCurrency'] = $CryptoCurrency = CryptoCurrency::whereSlug($slug)->firstOrFail();
+
+        $dt = Data::all()->where('id_crypto_currencie','=',$CryptoCurrency->id);
+        $data['chart'] = \Charts::database($dt,'line', 'highcharts')
+            ->groupBy('time',null)
+            ->labels($dt->pluck('price_usd'))
+            ->values($dt->pluck('price_usd'));
 
         return view('currencies.show',$data);
     }

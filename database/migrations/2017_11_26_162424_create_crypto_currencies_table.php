@@ -20,7 +20,8 @@ class CreateCryptoCurrenciesTable extends Migration
             $table->string('symbol')->nullable();
             $table->string('slug')->nullable();
             $table->string('algorithm')->nullable();
-            $table->text('overview')->nullable();
+            $table->longText('overview')->nullable();
+            $table->longText('social')->nullable();
             $table->string('logo')->nullable();
 
             $table->decimal('price_usd',19,6)->nullable();
