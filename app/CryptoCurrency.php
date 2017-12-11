@@ -72,12 +72,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereUrlData($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereVolume24hBtc($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereVolume24hUsd($value)
+ * @property string|null $social
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\CustomValue[] $info
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\CryptoCurrency whereSocial($value)
  */
 class CryptoCurrency extends Model
 {
 
     protected $fillable = [
         'name',
+        'full_name',
         'symbol',
         'slug',
         'algorithm',
@@ -109,4 +113,8 @@ class CryptoCurrency extends Model
         'url',
         'url_data'
     ];
+
+    public function info(){
+        return $this->hasMany(CustomValue::class,'id_crypto_currencie','id');
+    }
 }

@@ -6,6 +6,11 @@
             <div class="row">
                 <div class="col-5">
                     <h1>{!! $CryptoCurrency->name !!} <small>({!! $CryptoCurrency->symbol !!})</small></h1>
+                    <ul class="nav flex-column">
+                        @foreach($CryptoCurrency->info as $custom)
+                            <li class="nav-item"><a class="nav-link" rel="nofollow" target="_blank" href="{!! $custom->value !!}">{!! $custom->name !!}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
                 <div class="col-7">
                     <div class="h3">${!! $CryptoCurrency->price_usd !!} <small>USD</small></div>

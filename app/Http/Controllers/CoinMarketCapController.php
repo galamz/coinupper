@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CryptoCurrency;
+use App\CustomValue;
 use App\Data;
+use App\Markets;
+use App\MarketsExchange;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -141,6 +144,7 @@ class CoinMarketCapController extends Controller
                 ['url' => self::url($tr)],
                 [
                     'name'              => self::nameCurrency($tr),
+                    'full_name'         => self::nameCurrency($tr),
                     'symbol'            => self::symbolCurrency($tr),
                     'slug'              => str_slug(self::nameCurrency($tr)),
 
@@ -177,18 +181,74 @@ class CoinMarketCapController extends Controller
     }
 
 
-    public function show(){
+    public function show($id = 1){
 
         $timeStar = 1367174841000;
         $timeEnd = Carbon::now()->timestamp.'000';
 
-
-        $coin = CryptoCurrency::orderBy('id')->find(1);
+        $coin = CryptoCurrency::findOrFail($id);
 
         $client = new Client;
 
-        $html = $client->get(self::$domain_graphs.$coin->url.$timeStar.'/'.$timeEnd.'/')->getBody();
 
+        $htmldata = $client->get(self::$domain.$coin->url)->getBody();
+
+        $htmlDom = new Htmldom($htmldata);
+
+        $menuData  = $htmlDom->find('.list-unstyled',0);
+
+        foreach ($menuData->find('a') as $li ){
+            $href = trim($li->href);
+            $title = trim($li->plaintext);
+
+            CustomValue::firstOrCreate([
+                'id_crypto_currencie' => $id,
+                'name' => $title,
+                'value' => $href,
+            ]);
+
+        }
+
+
+        $marketsTable = $htmlDom->find('#markets-table',0);
+
+        foreach ($marketsTable->find('tr') as $trMarket ){
+            $nameMarket = $trMarket->find('td',1);
+            if(!$nameMarket) continue;
+
+            $nameMarket = trim($nameMarket->plaintext);
+            $urlMarket =  $trMarket->find('td',2)->find('a',0)->href;
+            $domainMarket = parse_url($urlMarket,PHP_URL_SCHEME).'://'.parse_url($urlMarket,PHP_URL_HOST);
+
+            $CreateMarket = Markets::firstOrCreate(
+                ['name' => $nameMarket],
+                [
+                    'name' => $nameMarket,
+                    'url' => $domainMarket,
+                ]
+            );
+
+            $id_CreateMarket = $CreateMarket->id;
+
+            MarketsExchange::firstOrCreate([
+                'id_crypto_currencie' => ,
+                'id_market' => ,
+            ],
+                [
+                    'id_crypto_currencie' => ,
+                    'id_market' => ,
+                    'url' => ,
+                    'from' => ,
+                    'to' => ,
+                ]);
+
+
+        }
+
+        return '';
+
+
+        $html = $client->get(self::$domain_graphs.$coin->url.$timeStar.'/'.$timeEnd.'/')->getBody();
         $data =  json_decode($html);
 
         $data = collect($data)->toArray();

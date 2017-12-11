@@ -18,6 +18,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('currencies/{slug}','CryptoCurrencyController@show')->name('currencies');
+Route::get('currencies/{slug}/graph','CryptoCurrencyController@graph')->name('currencies.graph');
 
 
 Route::get('get','CoinMarketCapController@index');

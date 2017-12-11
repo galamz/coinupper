@@ -23,5 +23,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomValue extends Model
 {
-    //
+    protected $fillable = ['id_crypto_currencie','name','value'];
 }
