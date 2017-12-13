@@ -70,7 +70,7 @@ class CryptoCurrencyController extends Controller
             $volume_usd     = number_format($item->volume_usd,2,'.',',');
 
 
-            $iss['market_cap_supply'][] = [$timeToTimestep,$market_cap_supply];
+            $iss['market_cap_supply'][] = [$timeToTimestep . '000',$market_cap_supply];
             $iss['price_usd'][]         = [$timeToTimestep,$price_usd];
             $iss['price_btc'][]         = [$timeToTimestep,$price_btc];
             $iss['volume_usd'][]        = [$timeToTimestep,$volume_usd];

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card card-body">
             <div class="row">
-                <div class="col-5">
+                <div class="col-4">
                     <h1>{!! $CryptoCurrency->name !!} <small>({!! $CryptoCurrency->symbol !!})</small></h1>
                     <ul class="nav flex-column">
                         @foreach($CryptoCurrency->info as $custom)
@@ -12,7 +12,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-7">
+                <div class="col-8">
                     <div class="h3">${!! $CryptoCurrency->price_usd !!} <small>USD</small></div>
                     <div>${!! $CryptoCurrency->price_btc !!} <small>USD</small></div>
                     <table class="table">
@@ -33,19 +33,32 @@
                     </table>
                 </div>
             </div>
-            <nav class="nav nav-tabs" id="myTab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="icon icon-line-chart mr-1"></i>Charts</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="icon icon-exchange mr-1"></i>Markets</a>
+        </div>
+
+        <div class="card card-body my-3">
+
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+            <ul class="nav nav-tabs card-header-tab" id="myTab" role="tablist">
+                <li class="nav-item"><a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="icon icon-line-chart mr-1"></i>Charts</a></li>
+                <li><a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="icon icon-exchange mr-1"></i>Markets</a></li>
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="icon icon-globe mr-1"></i>Social</a>
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="icon icon-line-cogs mr-1"></i>Tools</a>
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="icon icon-table mr-1"></i>Historical Data</a>
-            </nav>
+            </ul>
+            </div>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show p-2 active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    @include('layouts.currencies-chart',['CryptoCurrency' => $CryptoCurrency])
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
             </div>
         </div>
+
     </div>
 @endsection
+
+

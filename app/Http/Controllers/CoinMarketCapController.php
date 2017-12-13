@@ -188,10 +188,14 @@ class CoinMarketCapController extends Controller
 
         $coin = CryptoCurrency::findOrFail($id);
 
+//        return $coin;
+
         $client = new Client;
 
 
         $htmldata = $client->get(self::$domain.$coin->url)->getBody();
+
+//        return $htmldata;
 
         $htmlDom = new Htmldom($htmldata);
 
@@ -230,22 +234,22 @@ class CoinMarketCapController extends Controller
 
             $id_CreateMarket = $CreateMarket->id;
 
-            MarketsExchange::firstOrCreate([
-                'id_crypto_currencie' => ,
-                'id_market' => ,
-            ],
-                [
-                    'id_crypto_currencie' => ,
-                    'id_market' => ,
-                    'url' => ,
-                    'from' => ,
-                    'to' => ,
-                ]);
+//            MarketsExchange::firstOrCreate([
+//                'id_crypto_currencie' => ,
+//                'id_market' => ,
+//            ],
+//                [
+//                    'id_crypto_currencie' => ,
+//                    'id_market' => ,
+//                    'url' => ,
+//                    'from' => ,
+//                    'to' => ,
+//                ]);
 
 
         }
 
-        return '';
+//        return '';
 
 
         $html = $client->get(self::$domain_graphs.$coin->url.$timeStar.'/'.$timeEnd.'/')->getBody();
