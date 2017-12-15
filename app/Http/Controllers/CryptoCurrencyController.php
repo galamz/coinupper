@@ -56,24 +56,24 @@ class CryptoCurrencyController extends Controller
 
         $CryptoCurrency = CryptoCurrency::whereSlug($slug)->firstOrFail(['id']);
 
-        $dataCryptoCurrency = Data::whereIdCryptoCurrencie($CryptoCurrency->id)->get(['market_cap_by_available_supply','price_usd','price_btc','volume_usd']);
+        $dataCryptoCurrency = Data::whereIdCryptoCurrencie($CryptoCurrency->id)->get(['market_cap_by_available_supply','time','price_usd','price_btc','volume_usd']);
 
         if($dataCryptoCurrency->isEmpty()) return null;
 
         foreach ($dataCryptoCurrency as $item){
 
-            $timeToTimestep = Carbon::parse($item->time)->timestamp;
+            $timeToTimestamp = Carbon::parse($item->time)->timestamp * 1000;
 
-            $market_cap_supply      = number_format($item->market_cap_by_available_supply,2,'.',',');
-            $price_usd      = number_format($item->price_usd,2,'.',',');
-            $price_btc      = number_format($item->price_btc,2,'.',',');
-            $volume_usd     = number_format($item->volume_usd,2,'.',',');
+            $market_cap_supply      = intval($item->market_cap_by_available_supply);
+            $price_usd      = intval($item->price_usd);
+            $price_btc      = intval($item->price_btc);
+            $volume_usd     = intval($item->volume_usd);
 
 
-            $iss['market_cap_supply'][] = [$timeToTimestep . '000',$market_cap_supply];
-            $iss['price_usd'][]         = [$timeToTimestep,$price_usd];
-            $iss['price_btc'][]         = [$timeToTimestep,$price_btc];
-            $iss['volume_usd'][]        = [$timeToTimestep,$volume_usd];
+            $iss['market_cap_supply'][] = [$timeToTimestamp,intval($market_cap_supply)];
+            $iss['price_usd'][]         = [$timeToTimestamp,$price_usd];
+            $iss['price_btc'][]         = [$timeToTimestamp,$price_btc];
+            $iss['volume_usd'][]        = [$timeToTimestamp,$volume_usd];
 
         }
         return response()->json($iss);
