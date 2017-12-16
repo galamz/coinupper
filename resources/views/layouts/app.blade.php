@@ -17,6 +17,11 @@
 </head>
 <body>
     <div id="app">
+        <div class="bg-primary py-1 text-white">
+            <div class="container">
+                {!! $hi !!}
+            </div>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-white mb-3">
             <div class="container">
                 <a class="navbar-brand" href="{!! route('home') !!}">{!! config("app.name") !!}</a>

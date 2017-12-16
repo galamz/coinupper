@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\CryptoCurrency;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $hi = CryptoCurrency::sum('market_cap_usd');
+
+        View::share('hi',$hi);
     }
 
     /**
