@@ -17,6 +17,7 @@ class CreateCryptoCurrenciesTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('full_name')->nullable();
+            $table->integer('rank');
             $table->string('symbol')->nullable();
             $table->string('slug')->nullable();
             $table->string('algorithm')->nullable();
@@ -24,34 +25,28 @@ class CreateCryptoCurrenciesTable extends Migration
             $table->longText('social')->nullable();
             $table->string('logo')->nullable();
 
-            $table->decimal('price_usd',19,6)->nullable();
-            $table->decimal('price_btc',19,6)->nullable();
+            $table->float('price_usd',19,6)->nullable();
+            $table->float('price_btc',19,6)->nullable();
 
-            $table->decimal('market_cap_usd',19,6)->nullable();
-            $table->decimal('market_cap_btc',19,6)->nullable();
+            $table->float('market_cap_usd',19,6)->nullable();
 
-            $table->decimal('volume_24h_usd',19,6)->nullable();
-            $table->decimal('volume_24h_btc',19,6)->nullable();
+            $table->float('volume_24h_usd',19,6)->nullable();
 
-            $table->decimal('change_7d_usd',19,6)->nullable();
-            $table->decimal('change_7d_btc',19,6)->nullable();
+            $table->float('available_supply',19,6)->nullable();
 
-            $table->decimal('change_24h_usd',19,6)->nullable();
-            $table->decimal('change_24h_btc',19,6)->nullable();
+            $table->float('max_supply',25,6)->nullable();
 
-            $table->decimal('change_1h_usd',19,6)->nullable();
-            $table->decimal('change_1h_btc',19,6)->nullable();
-
-            $table->decimal('circulating',19,6)->nullable();
-            $table->decimal('max_circulating',19,6)->nullable();
-            $table->string('circulating_url')->nullable();
-            $table->text('mini_chart')->nullable();
-            $table->timestamps();
+            $table->float('percent_change_1h',19,6)->nullable();
+            $table->float('percent_change_24h',19,6)->nullable();
+            $table->float('percent_change_7d',19,6)->nullable();
+            $table->integer('last_updated')->nullable();
 
             // scraper
 
             $table->string('url')->nullable();
             $table->string('url_data')->nullable();
+            $table->timestamps();
+
 
         });
     }

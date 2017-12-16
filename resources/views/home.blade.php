@@ -46,12 +46,12 @@
                         </a>
                         <small class="font-italic">{!! $Currency->price_btc !!} BTC</small>
                     </td>
-                    <td>${!! number_format($Currency->volume_24h_usd,0) !!}</td>
-                    <td><a target="_blank" rel="nofollow" href="{!! $Currency->circulating_url !!}">{!! number_format($Currency->circulating).' '.$Currency->symbol !!}</a></td>
+                    <td>${!! number_format($Currency->available_supply,0) !!}</td>
+                    <td><a target="_blank" rel="nofollow" href="{!! $Currency->circulating_url !!}">{!! number_format($Currency->available_supply).' '.$Currency->symbol !!}</a></td>
                     <td>
-                        <span class="font-weight-bold {!! ($Currency->change_24h_usd < 0 ? 'text-danger' : 'text-success') !!}">
-                            {!! number_format($Currency->change_24h_usd,2) !!}
-                            <i class="ml-1 icon icon-arrow-{!! ($Currency->change_24h_usd < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
+                        <span class="font-weight-bold {!! ($Currency->percent_change_24h < 0 ? 'text-danger' : 'text-success') !!}">
+                            {!! number_format($Currency->percent_change_24h,2) !!}
+                            <i class="ml-1 icon icon-arrow-{!! ($Currency->percent_change_24h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
                         </span>
                     </td>
                     <td class="text-center"><img src="holder.js/100x40" ></td>
