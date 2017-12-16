@@ -172,6 +172,10 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Yangqi\Htmldom\HtmldomServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Swap\Laravel\SwapServiceProvider::class,
+        \Torann\Currency\CurrencyServiceProvider::class,
+
+
 
 
 
@@ -239,6 +243,10 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Htmldom' => Yangqi\Htmldom\Htmldom::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Swap' => Swap\Laravel\Facades\Swap::class,
+        'Currency' => \Torann\Currency\Facades\Currency::class,
+
+
 
 
 

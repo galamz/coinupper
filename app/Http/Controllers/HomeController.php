@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CryptoCurrency;
 use Illuminate\Http\Request;
+use Swap;
 
 class HomeController extends Controller
 {
@@ -15,9 +16,9 @@ class HomeController extends Controller
     public function index()
     {
 
+
         $data['CryptoCurrency'] = $CryptoCurrency  = CryptoCurrency::orderBy('id')->paginate(100);
 
-//        return $CryptoCurrency;
 
         return view('home',$data);
     }
