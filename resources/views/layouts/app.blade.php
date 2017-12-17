@@ -17,9 +17,17 @@
 </head>
 <body>
     <div id="app">
-        <div class="bg-primary-d100 py-1 text-white">
+        <div class="bg-primary globe-data py-1 text-white">
             <div class="container">
-                Cryptocurrencies: <a href="#">{!! $hi !!}</a>
+                <div class="row">
+                    <div class="col">Cryptocurrencies: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col">Markets: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col">Market Cap: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col">24h Vol: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col">BTC Dominance: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col">BTC Price: ${!! $BTC_price_usd !!}</div>
+                </div>
+
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
@@ -31,8 +39,31 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('all') !!}">All Coins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('all') !!}">Markets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('all') !!}">Converter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('all') !!}">Widget</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="{!! route('login') !!}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{!! route('login') !!}">Login</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {!! session('currency','USD') !!}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @foreach(Config::get('swap.currencies') as $currency)
+                                <a class="dropdown-item" href="{!! Request::fullUrlWithQuery(['currency' => $currency]) !!}">{!! $currency !!}</a>
+                                @endforeach
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -52,11 +83,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
-    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
 
     @stack('scripts')
 </body>

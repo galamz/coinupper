@@ -18,7 +18,7 @@ return [
     |
     | The options to pass to Swap amongst:
     |
-    | * cache_ttl: The cache ttl in seconds.
+    | * cache_ttlThe cache ttl in seconds.
     */
     'options' => [],
 
@@ -93,4 +93,39 @@ return [
     | The Cache Item Pool service name to use.
     */
     'cache_item_pool' => null,
+
+    'currencies' => [
+        'EUR',
+        "AUD",
+        "BGN",
+        "BRL",
+        "CAD",
+        "CHF",
+        "CNY",
+        "CZK",
+        "DKK",
+        "GBP",
+        "HKD",
+        "HRK",
+        "HUF",
+        "IDR",
+        "ILS",
+        "INR",
+        "JPY",
+        "KRW",
+        "MXN",
+        "MYR",
+        "NOK",
+        "NZD",
+        "PHP",
+        "PLN",
+        "RON",
+        "RUB",
+        "SEK",
+        "SGD",
+        "THB",
+        "TRY",
+        "USD",
+        "ZAR"
+    ]
 ];

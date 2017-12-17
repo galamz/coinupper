@@ -17,13 +17,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         try{
-            $hi = CryptoCurrency::sum('market_cap_usd');
+            $hi = CryptoCurrency::count('id');
+            $BTC_price = CryptoCurrency::whereSymbol('BTC')->orderBy('id')->firstOrFail(['price_usd']);
+            $BTC_price_usd = $BTC_price->price_usd;
 
         }catch (QueryException $exception){
             $hi = null;
+            $BTC_price_usd = null;
+
         }
 
         View::share('hi',$hi);
+        View::share('BTC_price_usd',$BTC_price_usd);
     }
 
     /**

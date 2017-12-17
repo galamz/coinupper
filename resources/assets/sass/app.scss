@@ -47,13 +47,19 @@ $white : white;
   }
 }
 
-
-.tab-content {
-  > .tab-pane {}
-  > .active {
-    background-color: $nav-tabs-link-active-bg;
-    border: $nav-tabs-border-width solid $nav-tabs-link-active-border-color;
-    @extend .border-top-0;
+.globe-data{
+  a{
+    color: darken(white,10);
   }
 }
 
+//
+//.tab-content {
+//  > .tab-pane {}
+//  > .active {
+//    background-color: $nav-tabs-link-active-bg;
+//    border: $nav-tabs-border-width solid $nav-tabs-link-active-border-color;
+//    @extend .border-top-0;
+//  }
+//}
+//

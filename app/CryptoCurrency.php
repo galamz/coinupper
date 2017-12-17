@@ -79,28 +79,6 @@ use Illuminate\Database\Eloquent\Model;
 class CryptoCurrency extends Model
 {
 
-    /*
-     *                    'name'              => $item->name,
-                    'full_name'         => self::nameCurrency($item->name),
-                    'symbol'            => self::symbolCurrency($item->symbol),
-                    'slug'              => str_slug(self::nameCurrency($item->name)),
-                    'rank'              => $item->rank,
-
-                    'price_usd'         => self::price_usd($item->price_usd),
-                    'price_btc'         => self::price_btc($item->price_btc),
-
-                    'market_cap_usd'    => self::market_cap_usd($item->market_cap_usd),
-
-                    'volume_24h_usd'    => self::volume_usd($item->{'24h_volume_usd'}),
-
-                    'available_supply'  => $item->{'available_supply'},
-                    'total_supply'      => $item->{'total_supply'},
-                    'max_supply'        => $item->{'max_supply'},
-                    'percent_change_1h'        => $item->{'percent_change_1h'},
-                    'percent_change_24h'        => $item->{'percent_change_24h'},
-                    'percent_change_7d'        => $item->{'percent_change_7d'},
-                    'last_updated'        => $item->{'percent_change_7d'},
-    */
 
     protected $fillable = [
         'name',

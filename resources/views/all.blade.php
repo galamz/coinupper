@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container">
+        <div class="text-center">
+            <h1>All CryptoCurrencies</h1>
+        </div>
         <div class="card mb-3">
             <table class="table table-striped table-hover table-data mb-0 mt-0 table-sm" cellspacing="0" width="100%">
                 <thead>
@@ -10,9 +13,11 @@
                     <th class="text-left">Name</th>
                     <th>Market Cap</th>
                     <th>Price</th>
-                    <th>Volume (24h)</th>
                     <th>Circulating Supply</th>
-                    <th>Change (24h)</th>
+                    <th>Volume (24h)</th>
+                    <th>% 1h</th>
+                    <th>% 24h</th>
+                    <th>% 7d</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,7 +35,7 @@
                         </td>
                         <td class="text-right">
                             ${!! number_format($Currency->market_cap_usd,0,',','.') !!}<br>
-                            <small class="font-italic">{!! $Currency->market_cap_btc !!} BTC</small>
+                            <small class="font-italic">{!! number_format($Currency->market_cap_usd / $BTC_price_usd,0,',','.') !!} BTC</small>
                         </td>
                         <td>
                             <a class="font-weight-bold d-block" href="{!! route('currencies',['slug' => $Currency->slug]) !!}">
@@ -41,9 +46,22 @@
                         <td>${!! number_format($Currency->available_supply,0) !!}</td>
                         <td><a target="_blank" rel="nofollow" href="{!! $Currency->circulating_url !!}">{!! number_format($Currency->available_supply).' '.$Currency->symbol !!}</a></td>
                         <td>
+                        <span class="font-weight-bold {!! ($Currency->percent_change_1h < 0 ? 'text-danger' : 'text-success') !!}">
+                            {!! number_format($Currency->percent_change_1h,2) !!}
+                            <i class="ml-1 icon icon-arrow-{!! ($Currency->percent_change_1h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
+                        </span>
+                        </td>
+                        <td>
                         <span class="font-weight-bold {!! ($Currency->percent_change_24h < 0 ? 'text-danger' : 'text-success') !!}">
                             {!! number_format($Currency->percent_change_24h,2) !!}
                             <i class="ml-1 icon icon-arrow-{!! ($Currency->percent_change_24h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
+                        </span>
+                        </td>
+
+                        <td>
+                        <span class="font-weight-bold {!! ($Currency->percent_change_7d < 0 ? 'text-danger' : 'text-success') !!}">
+                            {!! number_format($Currency->percent_change_7d,2) !!}
+                            <i class="ml-1 icon icon-arrow-{!! ($Currency->percent_change_7d < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
                         </span>
                         </td>
                     </tr>

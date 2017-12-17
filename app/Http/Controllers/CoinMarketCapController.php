@@ -170,7 +170,7 @@ class CoinMarketCapController extends Controller
         $client = new Client;
 
 
-        $htmldata = $client->get(self::$domain.$coin->url)->getBody();
+        $htmldata = $client->get(self::$domain.'currencies/'.$coin->url)->getBody();
 
 //        return $htmldata;
 
@@ -229,34 +229,34 @@ class CoinMarketCapController extends Controller
 //        return '';
 
 
-        $html = $client->get(self::$domain_graphs.$coin->url.$timeStar.'/'.$timeEnd.'/')->getBody();
-        $data =  json_decode($html);
-
-        $data = collect($data)->toArray();
-
-        $NewArray = [];
-        $i = 0;
-        foreach($data['market_cap_by_available_supply'] as $value) {
-            $NewArray = array_unique(array_merge(array_merge(array_merge($value, $data['price_usd'][$i]),$data['price_btc'][$i]),$data['volume_usd'][$i]));
-            $i++;
-
-            $time = Carbon::createFromTimestampUTC(substr($NewArray[0],0,-3))->toDateTimeString();
-
-            $data[] = Data::firstOrCreate(
-                ['time' => $time,'id_crypto_currencie' => $coin->id],
-                [
-                    'time'                   => $time,
-                    'id_crypto_currencie'    => $coin->id,
-                    'market_cap_by_available_supply'              => $NewArray[1],
-                    'price_usd'              => $NewArray[3],
-                    'price_btc'              => $NewArray[5],
-                    'volume_usd'             => $NewArray[7],
-                ]
-            );
-
-
-        }
-
+//        $html = $client->get(self::$domain_graphs.$coin->url.$timeStar.'/'.$timeEnd.'/')->getBody();
+//        $data =  json_decode($html);
+//
+//        $data = collect($data)->toArray();
+//
+//        $NewArray = [];
+//        $i = 0;
+//        foreach($data['market_cap_by_available_supply'] as $value) {
+//            $NewArray = array_unique(array_merge(array_merge(array_merge($value, $data['price_usd'][$i]),$data['price_btc'][$i]),$data['volume_usd'][$i]));
+//            $i++;
+//
+//            $time = Carbon::createFromTimestampUTC(substr($NewArray[0],0,-3))->toDateTimeString();
+//
+//            $data[] = Data::firstOrCreate(
+//                ['time' => $time,'id_crypto_currencie' => $coin->id],
+//                [
+//                    'time'                   => $time,
+//                    'id_crypto_currencie'    => $coin->id,
+//                    'market_cap_by_available_supply'              => $NewArray[1],
+//                    'price_usd'              => $NewArray[3],
+//                    'price_btc'              => $NewArray[5],
+//                    'volume_usd'             => $NewArray[7],
+//                ]
+//            );
+//
+//
+//        }
+//
 
         //$data = array_unique($NewArray[0]);
 
