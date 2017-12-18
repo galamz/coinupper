@@ -17,8 +17,8 @@
                     <div class="col-8">
                         <div class="h3">${!!  number_format($CryptoCurrency->price_usd,2,',','.') !!} <small>USD</small>
                             <span class="{!! ($CryptoCurrency->percent_change_24h < 0 ? 'text-danger' : 'text-success') !!}">
-                            {!! number_format($CryptoCurrency->percent_change_24h,2) !!}
-                                <i class="ml-1 icon icon-arrow-{!! ($CryptoCurrency->percent_change_24h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
+                            ({!! number_format($CryptoCurrency->percent_change_24h,2) !!}%)
+                                <i class="ml-1 icon icon-caret-{!! ($CryptoCurrency->percent_change_24h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
                         </span>
                         </div>
                         <div>${!! $CryptoCurrency->price_btc !!} <small>BTC</small></div>
@@ -56,48 +56,32 @@
 
         </div>
 
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-6">
                 <div class="card my-3">
                     <div class="card-header">
-                        Crypto Currency Exchange
+                        Currency Exchange
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" aria-label="Text input with checkbox">
+                                    <input type="number" value="{!! Request::get('from',1) !!}" data-price-usd="{!! $CryptoCurrency->price_usd !!}" placeholder="0.987" class="from-currency action-currency form-control" aria-label="Text input with checkbox">
                                     <span class="input-group-addon">{!! $CryptoCurrency->symbol !!}</span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" aria-label="Text input with radio button">
-                                    <span class="input-group-addon">BTC</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <input type="text" class="form-control action-currency to-currency" aria-label="Text input with radio button">
+                                    <select  class="form-control action-currency form-control-chosen currency" readonly="" data-placeholder="Please select...">
+                                        <optgroup label="Currency">
+                                            @foreach($currencies as $currency)
+                                                <option data-price-usd="{!! $currency->price_usd !!}">{!! $currency->name.' ('.$currency->symbol.')' !!}</option>
+                                            @endforeach
+                                        </optgroup>
 
-            <div class="col">
-                <div class="card my-3">
-                    <div class="card-header">
-                        Really Currency Exchange
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" aria-label="Text input with checkbox">
-                                    <span class="input-group-addon">{!! $CryptoCurrency->symbol !!}</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" aria-label="Text input with radio button">
-                                    <span class="input-group-addon">USD</span>
+                                    </select>
+
                                 </div>
                             </div>
                         </div>
@@ -128,5 +112,30 @@
 
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $('.action-currency').bind('keyup keydown click change',function(){
+            var fromCurrency        = $('.from-currency');
+            var quntiy              = fromCurrency.val();
+
+            var priceFromUsd        = fromCurrency.data('price-usd');
+            var selectedCurrency    = $(".currency option:selected").data('price-usd');
+
+            var cal = parseFloat(priceFromUsd) * parseFloat(quntiy) / parseFloat(selectedCurrency);
+
+            cal = parseFloat(cal);
+
+            if(isNaN(cal)) cal = 0;
+
+            console.log(cal);
+
+
+            $('.to-currency').val(cal);
+
+            // alert(priceFrom);
+        });
+    </script>
+@endpush
 
 

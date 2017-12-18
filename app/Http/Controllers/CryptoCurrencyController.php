@@ -43,7 +43,9 @@ class CryptoCurrencyController extends Controller
 
     public function show($slug)
     {
-        $data['CryptoCurrency'] = $CryptoCurrency = CryptoCurrency::whereSlug($slug)->firstOrFail();
+        $data['CryptoCurrency'] = $CryptoCurrency   = CryptoCurrency::whereSlug($slug)->firstOrFail();
+
+        $data['currencies']     = $currencies       = CryptoCurrency::where('id','<>',$CryptoCurrency->id)->orderBy('rank')->get();
 
         $dt = Data::all()->where('id_crypto_currencie','=',$CryptoCurrency->id);
 
@@ -77,6 +79,23 @@ class CryptoCurrencyController extends Controller
 
         }
         return response()->json($iss);
+    }
+
+    public function searchJson(){
+
+        $data['currencies']     = $currencies       = CryptoCurrency::orderBy('rank')->get();
+
+        $curr = [];
+        foreach ($currencies as $currency){
+            $curr[] = [
+                'name' => $currency->name,
+                'symbol' => $currency->symbol,
+                'url' => route('currencies',['slug'=> $currency->slug])
+            ];
+        }
+
+        return response()->json($curr);
+
     }
 
     /**

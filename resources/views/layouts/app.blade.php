@@ -17,15 +17,15 @@
 </head>
 <body>
     <div id="app">
-        <div class="bg-primary globe-data py-1 text-white">
+        <div class="bg-primary globe-data py-1">
             <div class="container">
                 <div class="row">
                     <div class="col">Cryptocurrencies: <a href="#">{!! $hi !!}</a></div>
-                    <div class="col">Markets: <a href="#">{!! $hi !!}</a></div>
-                    <div class="col">Market Cap: <a href="#">{!! $hi !!}</a></div>
-                    <div class="col">24h Vol: <a href="#">{!! $hi !!}</a></div>
-                    <div class="col">BTC Dominance: <a href="#">{!! $hi !!}</a></div>
-                    <div class="col">BTC Price: ${!! $BTC_price_usd !!}</div>
+                    <div class="col text-center">Markets: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col text-center">Market Cap: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col text-center">24h Vol: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col text-center">BTC Dominance: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col text-right"><span class="badge badge-light badge-pill">ETH : ${!! $BTC_price_usd !!} | BTC: ${!! $BTC_price_usd !!}</span></div>
                 </div>
 
             </div>
@@ -43,17 +43,17 @@
                             <a class="nav-link" href="{!! route('all') !!}">All Coins</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{!! route('all') !!}">Markets</a>
+                            <a class="nav-link" href="{!! route('markets.index') !!}">Markets</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{!! route('all') !!}">Converter</a>
+                            <a class="nav-link" href="{!! route('calculator.index') !!}">Converter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{!! route('all') !!}">Widget</a>
+                            <a class="nav-link" href="{!! route('widget.index') !!}">Widget</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="{!! route('login') !!}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{!! route('register') !!}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="{!! route('login') !!}">Login</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,16 +73,70 @@
     </div>
 
 
-    <div class="bg-dark py-3 text-center text-white mt-3">
-        hello
+    <div class="bg-dark py-5 text-white mt-3">
+        <div class="container">
+            <div>
+                <div class="h2 text-center">Like what we are doing? Donations are welcome!</div>
+            </div>
+        </div>
     </div>
 
-    <footer class="bg-dark py-3 text-center text-white">
-        hi
+    <footer class="bg-dark py-3 text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <span class="nav-link">&copy; 2017 {!! config('app.name') !!}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Disclaimer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Terms of Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Privacy policy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">API</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <span class="nav-link">Follow Us On: </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
     </footer>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        var options = {
+
+            url: "{!! route('search.json') !!}",
+
+            getValue: "name",
+
+            list: {
+                match: {
+                    enabled: true
+                }
+            },
+
+            theme: "square"
+        };
+
+        $("#cryptocurrency").easyAutocomplete(options);
+    </script>
 
     @stack('scripts')
 </body>

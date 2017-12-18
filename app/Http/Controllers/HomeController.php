@@ -15,7 +15,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $data['CryptoCurrency'] = $CryptoCurrency  = CryptoCurrency::orderBy('rank')->paginate(100);
         return view('home',$data);
     }
@@ -23,8 +22,15 @@ class HomeController extends Controller
     public function all(){
 
         $data['CryptoCurrency'] = $CryptoCurrency  = CryptoCurrency::orderBy('rank')->get();
-
         return view('all',$data);
+    }
 
+    public function widget(){
+        return view('widget');
+    }
+
+
+    public function calculator(){
+        return view('calculator');
     }
 }

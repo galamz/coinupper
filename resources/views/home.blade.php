@@ -6,7 +6,9 @@
     <div class="mb-3">
         <div class="row">
             <div class="col">
-                <input type="text" placeholder="Search.." class="form-control">
+                {!! Form::open(['route' => 'home','method' => 'get']) !!}
+                <input type="text" id="cryptocurrency" placeholder="Search.." class="form-control">
+                {!! Form::close() !!}
             </div>
             <div class="col">
                 {!! $CryptoCurrency->links('vendor.pagination.bootstrap-4') !!}
@@ -62,7 +64,7 @@
                     <td>
                         <span class="font-weight-bold {!! ($Currency->percent_change_24h < 0 ? 'text-danger' : 'text-success') !!}">
                             {!! number_format($Currency->percent_change_24h,2) !!}%
-                            <i class="ml-1 icon icon-arrow-{!! ($Currency->percent_change_24h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
+                            <i class="ml-1 icon icon-caret-{!! ($Currency->percent_change_24h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
                         </span>
                     </td>
                     <td class="text-center"><img src="holder.js/100x40" ></td>

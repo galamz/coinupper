@@ -13,7 +13,9 @@ try {
     require('bootstrap');
     require('datatables.net');
     require('datatables.net-bs4');
+    require('chosen-js');
     require('holderjs');
+    require('easy-autocomplete');
 
 } catch (e) {}
 

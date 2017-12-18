@@ -22,6 +22,14 @@ Route::get('currencies/{slug}','CryptoCurrencyController@show')->name('currencie
 Route::get('currencies/{slug}/graph','CryptoCurrencyController@graph')->name('currencies.graph');
 
 
+Route::get('search.json','CryptoCurrencyController@searchJson')->name('search.json');
+Route::get('search','CryptoCurrencyController@search')->name('search.index');
+
+Route::get('widget','HomeController@widget')->name('widget.index');
+Route::get('calculator','HomeController@calculator')->name('calculator.index');
+Route::resource('markets','MarketsController');
+
+
 Route::get('get','CoinMarketCapController@index');
 Route::get('bitcoin/{id}','CoinMarketCapController@show');
 
