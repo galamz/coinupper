@@ -25,6 +25,7 @@
         "chosen-js": "^1.8.2",
         "datatables.net": "^1.10.16",
         "datatables.net-bs4": "^1.10.16",
+        "devbridge-autocomplete": "^1.4.7",
         "easy-autocomplete": "^1.3.5",
         "holderjs": "^2.9.4"
     }

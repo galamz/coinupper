@@ -45,6 +45,7 @@ class CreateCryptoCurrenciesTable extends Migration
 
             $table->string('url')->nullable();
             $table->string('url_data')->nullable();
+            $table->string('tradingview_id')->nullable();
             $table->timestamps();
 
 
