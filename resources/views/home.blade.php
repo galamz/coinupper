@@ -67,7 +67,7 @@
                             <i class="ml-1 icon icon-caret-{!! ($Currency->percent_change_24h < 0 ? 'down' : 'up') !!}" aria-hidden="true"></i>
                         </span>
                     </td>
-                    <td class="text-center"><img src="holder.js/100x40" ></td>
+                    <td class="text-center"><img src="{!! url('soon.svg') !!}" ></td>
                 </tr>
             @endforeach
             </tbody>

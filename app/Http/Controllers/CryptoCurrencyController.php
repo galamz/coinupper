@@ -88,8 +88,7 @@ class CryptoCurrencyController extends Controller
         $curr = [];
         foreach ($currencies as $currency){
             $curr[] = [
-                'name' => $currency->name,
-                'symbol' => $currency->symbol,
+                'value' => $currency->name.' ('.$currency->symbol.')',
                 'url' => route('currencies',['slug'=> $currency->slug])
             ];
         }

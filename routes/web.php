@@ -40,5 +40,6 @@ Route::get('bitcoin/{id}','CoinMarketCapController@show');
 
 Route::namespace('Dashboard')->prefix('dashboard')->group(function(){
     Route::get('/','DashboardController@index')->name('dashboard.index');
+    Route::resource('currency','DashboardController');
 });
 

@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="//cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css"/>
+
 
 
 </head>
@@ -124,23 +126,21 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.js"></script>
     <script>
-        var options = {
 
-            url: "{!! route('search.json') !!}",
 
-            getValue: "name",
-
-            list: {
-                match: {
-                    enabled: true
+       $.getJSON('{!! route('search.json') !!}',function(data){
+            $('#cryptocurrency').autocomplete({
+                lookup: data,
+                onSelect: function (suggestion) {
+                    // alert('You selected: ' + suggestion.value + ', ');
+                    location.href = suggestion.url;
                 }
-            },
+            });
+        });
 
-            theme: "square"
-        };
 
-        $("#cryptocurrency").easyAutocomplete(options);
     </script>
 
     @stack('scripts')

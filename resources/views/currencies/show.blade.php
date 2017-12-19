@@ -2,10 +2,16 @@
 
 @section('content')
     <div class="container">
+        @if(Auth::check())
+            <div class="bg-dark p-2">
+                <a class="btn btn-info btn-sm" href="{!! route('currency.show',$CryptoCurrency) !!}" >Show Dashboard</a>
+                <a class="btn btn-warning btn-sm" href="{!! route('currency.show',$CryptoCurrency) !!}" >Edit</a>
+            </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-12 col-sm-4">
                         <h1>{!! $CryptoCurrency->name !!} <small>({!! $CryptoCurrency->symbol !!})</small></h1>
                         <ul class="nav flex-column">
                             @foreach($CryptoCurrency->info as $custom)
@@ -14,7 +20,7 @@
                             <li><span class="badge badge-success">Rank {!! $CryptoCurrency->rank !!}</span></li>
                         </ul>
                     </div>
-                    <div class="col-8">
+                    <div class="col-sm-8 col-12">
                         <div class="h3">${!!  number_format($CryptoCurrency->price_usd,2,',','.') !!} <small>USD</small>
                             <span class="{!! ($CryptoCurrency->percent_change_24h < 0 ? 'text-danger' : 'text-success') !!}">
                             ({!! number_format($CryptoCurrency->percent_change_24h,2) !!}%)
@@ -57,7 +63,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-6">
+            <div class="col">
                 <div class="card my-3">
                     <div class="card-header">
                         Currency Exchange
