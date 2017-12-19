@@ -17,8 +17,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         try{
-            $hi = CryptoCurrency::count('id');
-            $BTC_price = CryptoCurrency::whereSymbol('BTC')->orderBy('id')->firstOrFail(['price_usd']);
+            $hi         = CryptoCurrency::count('id');
+            $BTC_price  = CryptoCurrency::whereSymbol('BTC')->orderBy('id')->firstOrFail(['price_usd']);
             $BTC_price_usd = $BTC_price->price_usd;
 
         }catch (QueryException $exception){

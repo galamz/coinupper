@@ -12,7 +12,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-sm-4">
-                        <h1>{!! $CryptoCurrency->name !!} <small>({!! $CryptoCurrency->symbol !!})</small></h1>
+                        <div class="d-flex align-items-stretch">
+                            <div>
+                                @unless(is_null($CryptoCurrency->logo))
+                                    <span><img class="img-circle" src="{!! asset('images/64x64/'.$CryptoCurrency->logo) !!}" alt="{!! strtolower($CryptoCurrency->name) !!}" width="64" height="64" ></span>
+                                @else
+                                    <span class="bg-dark py-1 px-2 rounded-circle ">{!! $CryptoCurrency->symbol[0] !!}</span>
+                                @endif
+                            </div>
+                            <div class="pl-3 align-middle">
+                                <h1>{!! $CryptoCurrency->name !!} <small>({!! $CryptoCurrency->symbol !!})</small></h1>
+                            </div>
+                        </div>
                         <ul class="nav flex-column">
                             @foreach($CryptoCurrency->info as $custom)
                                 <li class="nav-item"><a class="nav-link px-0 py-0" rel="nofollow" target="_blank" href="{!! $custom->value !!}"><i class="icon icon-home mr-1"></i>{!! $custom->name !!}</a></li>

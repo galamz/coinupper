@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="card mb-3">
-        <table class="table table-striped table-hover table-data mb-0 mt-0 table-sm" cellspacing="0" width="100%">
+        <table class="table table-striped bg-white table-data mb-0 mt-0 table-sm" cellspacing="0" width="100%">
             <thead>
             <tr class="align-middle text-right">
                 <th class="text-center">#</th>
@@ -30,19 +30,16 @@
             </tr>
             </thead>
             <tbody>
-            @php
-                if($CryptoCurrency->currentPage() > 1){
-                    $iteration = $CryptoCurrency->currentPage() * 100;
-                }else{
-                    $iteration = 0;
-                }
-            @endphp
             @foreach($CryptoCurrency as $Currency)
                 <tr class="align-middle text-right">
-                    <td class="text-center font-weight-bold">{!! $iteration + $loop->iteration !!}</td>
+                    <td class="text-center font-weight-bold">{!! $Currency->rank !!}</td>
                     <td class="text-left">
-                        <a class="currency-name d-flex align-items-stretch" href="{!! route('currencies',['slug' => $Currency->slug]) !!}">
-                            <span class="bg-dark py-1 px-2 rounded-circle ">{!! $Currency->symbol[0] !!}</span>
+                        <a class="currency-name d-flex align-items-stretch" href="{!! route('currencies.show',['slug' => $Currency->slug]) !!}">
+                            @unless(is_null($Currency->logo))
+                                <span><img class="img-circle" src="{!! asset('images/32x32/'.$Currency->logo) !!}" alt="{!! strtolower($Currency->name) !!}" width="32" height="32" ></span>
+                            @else
+                                <span class="bg-dark py-1 px-2 rounded-circle ">{!! $Currency->symbol[0] !!}</span>
+                            @endif
                             <span class="ml-2">
                                  <b class="d-inline-block">{!! $Currency->name !!}</b>
                                 <small class="d-block text-dark">{!! $Currency->symbol !!}</small>
@@ -54,7 +51,7 @@
                         <small class="font-italic">{!! number_format($Currency->market_cap_usd / $BTC_price_usd,0,',','.')  !!} BTC</small>
                     </td>
                     <td>
-                        <a class="font-weight-bold d-block" href="{!! route('currencies',['slug' => $Currency->slug]) !!}">
+                        <a class="font-weight-bold d-block" href="{!! route('currencies.show',['slug' => $Currency->slug]) !!}">
                             ${!! number_format($Currency->price_usd,2,',','.') !!}
                         </a>
                         <small class="font-italic">{!! number_format($Currency->price_btc,6,',','.') !!} BTC</small>

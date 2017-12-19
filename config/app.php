@@ -174,6 +174,8 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Swap\Laravel\SwapServiceProvider::class,
         \Torann\Currency\CurrencyServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
 
 
@@ -245,6 +247,10 @@ return [
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'Swap' => Swap\Laravel\Facades\Swap::class,
         'Currency' => \Torann\Currency\Facades\Currency::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class
+
 
 
 
