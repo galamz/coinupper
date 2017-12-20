@@ -14,7 +14,8 @@ class MarketsController extends Controller
      */
     public function index()
     {
-        return view('markets.index');
+        $data['markets'] = Markets::get();
+        return view('markets.index',$data);
     }
 
     /**
