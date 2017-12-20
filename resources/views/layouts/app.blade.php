@@ -22,12 +22,12 @@
         <div class="bg-primary globe-data py-1">
             <div class="container">
                 <div class="row">
-                    <div class="col">Cryptocurrencies: <a href="#">{!! $hi !!}</a></div>
+                    <div class="col">Cryptocurrencies: <a href="{!! route('currencies.index') !!}">{!! $hi !!}</a></div>
                     <div class="col text-center">Markets: <a href="#">{!! $hi !!}</a></div>
                     <div class="col text-center">Market Cap: <a href="#">{!! $hi !!}</a></div>
                     <div class="col text-center">24h Vol: <a href="#">{!! $hi !!}</a></div>
                     <div class="col text-center">BTC Dominance: <a href="#">{!! $hi !!}</a></div>
-                    <div class="col text-right"><span class="badge badge-light badge-pill">ETH : ${!! $BTC_price_usd !!} | BTC: ${!! $BTC_price_usd !!}</span></div>
+                    <div class="col text-right"><span class="badge badge-light badge-pill">ETH : ${!! $ETC_price_usd !!} | BTC: ${!! $BTC_price_usd !!}</span></div>
                 </div>
 
             </div>
