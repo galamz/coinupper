@@ -54,19 +54,19 @@
                 <tr>
                     <td>
                         <div class="font-weight-bold">{!! number_format($CryptoCurrency->market_cap_usd,0,',','.') !!} USD</div>
-                        <div class="text-muted">{!! number_format($CryptoCurrency->market_cap_usd / $BTC_price_usd ,0,',','.') !!} BTC</div>
+                        <div class="text-muted">{!! number_format($CryptoCurrency->market_cap_usd / $globalData['BTC_price_usd'] ,0,',','.') !!} BTC</div>
                     </td>
                     <td>
                         <div class="font-weight-bold">{!! number_format($CryptoCurrency->volume_24h_usd,0,',','.') !!} USD</div>
-                        <div class="text-muted">{!! number_format($CryptoCurrency->volume_24h_usd / $BTC_price_usd ,0,',','.') !!} BTC</div>
+                        <div class="text-muted">{!! number_format($CryptoCurrency->volume_24h_usd / $globalData['BTC_price_usd'] ,0,',','.') !!} BTC</div>
                     </td>
                     <td>
                         <div class="font-weight-bold">{!! number_format($CryptoCurrency->available_supply,0,',','.') !!} USD</div>
-                        <div class="text-muted">{!! number_format($CryptoCurrency->available_supply / $BTC_price_usd ,0,',','.') !!} BTC</div>
+                        <div class="text-muted">{!! number_format($CryptoCurrency->available_supply / $globalData['BTC_price_usd'] ,0,',','.') !!} BTC</div>
                     </td>
                     <td>
                         <div class="font-weight-bold">{!! number_format($CryptoCurrency->max_supply,0,',','.')  !!} USD</div>
-                        <div class="text-muted">{!! number_format($CryptoCurrency->max_supply / $BTC_price_usd ,0,',','.') !!} BTC</div>
+                        <div class="text-muted">{!! number_format($CryptoCurrency->max_supply / $globalData['BTC_price_usd'] ,0,',','.') !!} BTC</div>
                     </td>
                 </tr>
             </table>
