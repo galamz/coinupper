@@ -53,6 +53,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{!! route('widget.index') !!}">Widget</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tools</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @unless(Auth::check())
