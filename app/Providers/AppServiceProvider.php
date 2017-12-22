@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
 
         try{
 
+            
+
             // need cache 5 min
             $DataBar         = CryptoCurrency::selectRaw('count(id) as CryptoCurrencies, sum(volume_24h_usd) as sumVolume_24h_usd,   sum(market_cap_usd) sumCryptoCurrencies')->first();
 
