@@ -16,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Schema::defaultStringLength(199);
+
+        
         try{
             $hi         = CryptoCurrency::count('id');
             $BTC_price  = CryptoCurrency::whereSymbol('BTC')->orderBy('id')->firstOrFail(['price_usd']);
