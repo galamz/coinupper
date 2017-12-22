@@ -73,21 +73,21 @@
 
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col">
                 <div class="card my-3">
                     <div class="card-header">
                         Currency Exchange
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3">
                                 <div class="input-group">
                                     <input type="number" value="{!! Request::get('from',1) !!}" data-price-usd="{!! $CryptoCurrency->price_usd !!}" placeholder="0.987" class="from-currency action-currency form-control" aria-label="Text input with checkbox">
                                     <span class="input-group-addon">{!! $CryptoCurrency->symbol !!}</span>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <div class="input-group">
                                     <input type="text" class="form-control action-currency to-currency" aria-label="Text input with radio button">
                                     <select  class="form-control action-currency form-control-chosen currency" readonly="" data-placeholder="Please select...">

@@ -132,7 +132,6 @@
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.js"></script>
     <script>
 
-
        $.getJSON('{!! route('search.json') !!}',function(data){
             $('#cryptocurrency').autocomplete({
                 lookup: data,
@@ -145,6 +144,15 @@
 
 
     </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111535245-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-111535245-1');
+    </script>
+
 
     @stack('scripts')
 </body>

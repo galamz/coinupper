@@ -81,7 +81,7 @@
             {!! $CryptoCurrency->links('vendor.pagination.bootstrap-4') !!}
         </div>
         <div class="col-12 text-center h3 mt-3">
-            Total Market Cap: $551,536,357,871
+            Total Market Cap: ${!! $globalData['sumCryptoCurrencies'] !!}
         </div>
     </div>
     <div>
