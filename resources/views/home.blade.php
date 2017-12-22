@@ -48,7 +48,7 @@
                     </td>
                     <td class="text-right">
                         ${!! number_format($Currency->market_cap_usd,0,',','.') !!}<br>
-                        <small class="font-italic">{!! number_format($Currency->market_cap_usd / $BTC_price_usd,0,',','.')  !!} BTC</small>
+                        <small class="font-italic">{!! number_format($Currency->market_cap_usd / $globalData['BTC_price_usd'],0,',','.')  !!} BTC</small>
                     </td>
                     <td>
                         <a class="font-weight-bold d-block" href="{!! route('currencies.show',['slug' => $Currency->slug]) !!}">

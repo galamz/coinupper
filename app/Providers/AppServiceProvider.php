@@ -20,18 +20,39 @@ class AppServiceProvider extends ServiceProvider
 
 
         try{
-            $hi         = CryptoCurrency::count('id');
+
+            // need cache 5 min
+            $DataBar         = CryptoCurrency::selectRaw('count(id) as CryptoCurrencies, sum(volume_24h_usd) as sumVolume_24h_usd,   sum(market_cap_usd) sumCryptoCurrencies')->first();
+
+            $CryptoCurrencies = $DataBar->CryptoCurrencies;
+            $sumCryptoCurrencies = number_format($DataBar->sumCryptoCurrencies,2,',','.');
+            $sumVolume_24h_usd = number_format($DataBar->sumVolume_24h_usd,2,',','.');
+
+
             $BTC_price  = CryptoCurrency::whereSymbol('BTC')->orderBy('id')->firstOrFail(['price_usd']);
+            $ETH_price  = CryptoCurrency::whereSymbol('ETH')->orderBy('id')->firstOrFail(['price_usd']);
             $BTC_price_usd = $BTC_price->price_usd;
+            $ETH_price_usd = $ETH_price->price_usd;
 
         }catch (QueryException $exception){
-            $hi = null;
-            $BTC_price_usd = null;
+            $CryptoCurrencies = 0;
+            $sumCryptoCurrencies = 0;
+            $BTC_price_usd = 0;
+            $ETH_price_usd = 0;
+            $sumVolume_24h_usd = 0;
 
         }
 
-        View::share('hi',$hi);
-        View::share('BTC_price_usd',$BTC_price_usd);
+        $globalData = [
+            'CryptoCurrencies'      => $CryptoCurrencies,
+            'sumCryptoCurrencies'   => $sumCryptoCurrencies,
+            'BTC_price_usd'         => $BTC_price_usd,
+            'ETC_price_usd'         => $ETH_price_usd,
+            'sumVolume_24h_usd'         => $sumVolume_24h_usd,
+        ];
+
+        View::share('globalData', $globalData);
+
     }
 
     /**

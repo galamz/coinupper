@@ -25,7 +25,7 @@
                     <tr class="align-middle text-right">
                         <td class="text-center font-weight-bold">{!! $Currency->rank !!}</td>
                         <td class="text-left">
-                            <a class="currency-name d-flex align-items-stretch" href="{!! route('currencies',['slug' => $Currency->slug]) !!}">
+                            <a class="currency-name d-flex align-items-stretch" href="{!! route('currencies.show',['slug' => $Currency->slug]) !!}">
                                 <span class="bg-dark py-1 px-2 rounded-circle ">{!! $Currency->symbol[0] !!}</span>
                                 <span class="ml-2">
                                  <b class="d-inline-block">{!! $Currency->name !!}</b>
@@ -35,10 +35,10 @@
                         </td>
                         <td class="text-right">
                             ${!! number_format($Currency->market_cap_usd,0,',','.') !!}<br>
-                            <small class="font-italic">{!! number_format($Currency->market_cap_usd / $BTC_price_usd,0,',','.') !!} BTC</small>
+                            <small class="font-italic">{!! number_format($Currency->market_cap_usd / $globalData['BTC_price_usd'],0,',','.') !!} BTC</small>
                         </td>
                         <td>
-                            <a class="font-weight-bold d-block" href="{!! route('currencies',['slug' => $Currency->slug]) !!}">
+                            <a class="font-weight-bold d-block" href="{!! route('currencies.show',['slug' => $Currency->slug]) !!}">
                                 ${!! number_format($Currency->price_usd,2,',','.') !!}
                             </a>
                             <small class="font-italic">{!! $Currency->price_btc !!} BTC</small>
