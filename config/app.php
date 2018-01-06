@@ -176,7 +176,7 @@ return [
         \Torann\Currency\CurrencyServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
 
 
@@ -249,7 +249,8 @@ return [
         'Currency' => \Torann\Currency\Facades\Currency::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
 
 
 
