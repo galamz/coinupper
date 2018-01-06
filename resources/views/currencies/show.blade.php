@@ -8,7 +8,7 @@
         @if(Auth::check())
             <div class="bg-dark p-2">
                 <a class="btn btn-info btn-sm" href="{!! route('currency.show',$CryptoCurrency) !!}" >Show Dashboard</a>
-                <a class="btn btn-warning btn-sm" href="{!! route('currency.show',$CryptoCurrency) !!}" >Edit</a>
+                <a class="btn btn-warning btn-sm" href="{!! route('currency.edit',$CryptoCurrency) !!}" >Edit</a>
             </div>
         @endif
         <div class="card">
@@ -84,17 +84,31 @@
                     </div>
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <div class="col-lg-3">
-                                <div class="input-group">
-                                    <input type="number" value="{!! Request::get('from',1) !!}" data-price-usd="{!! $CryptoCurrency->price_usd !!}" placeholder="0.987" class="from-currency action-currency form-control" aria-label="Text input with checkbox">
-                                    <span class="input-group-addon">{!! $CryptoCurrency->symbol !!}</span>
+                            <div class="col-lg-3 d-flex justify-content-center">
+                                <div class="input-group align-self-center d-flex">
+                                    <input type="number" value="{!! Request::get('from') !!}" data-price-usd="{!! $CryptoCurrency->price_usd !!}" placeholder="4 {!! $CryptoCurrency->symbol !!}" class="from-currency action-currency form-control" aria-label="Text input with checkbox">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">{!! $CryptoCurrency->symbol !!}</span>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-lg-1 col-1 d-flex justify-content-center">
+                                <i class="icon icon-exchange icon-2x align-self-center d-flex" aria-hidden="true"></i>
+                            </div>
                             <div class="col-lg-3">
-                                <div class="input-group">
-                                    <input type="text" class="form-control action-currency to-currency" aria-label="Text input with radio button">
-                                    <select  class="form-control action-currency form-control-chosen currency" readonly="" data-placeholder="Please select...">
-                                        <optgroup label="Currency">
+                                <div>
+                                    <input type="text" class="form-control action-currency to-currency" readonly aria-label="Text input with radio button">
+                                    <select  class="custom-select currency" readonly="" data-placeholder="Please select...">
+
+                                        @unless(is_null($globalData['AllFiatCurrencies']))
+                                            <optgroup label="Fiat Currency">
+                                                @foreach($globalData['AllFiatCurrencies'] as $fiatCurrency)
+                                                    <option data-price-usd="{!! currency(1,$fiatCurrency['code'],'USD',false) !!}">{!! $fiatCurrency['name'] .' ('.$fiatCurrency['code'] .')' !!}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @endunless
+
+                                        <optgroup label="Cypto Currency">
                                             @foreach($currencies as $currency)
                                                 <option data-price-usd="{!! $currency->price_usd !!}">{!! $currency->name.' ('.$currency->symbol.')' !!}</option>
                                             @endforeach
@@ -122,8 +136,15 @@
             </ul>
             </div>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" style="height: 500px" role="tabpanel" aria-labelledby="nav-home-tab">
-                    @include('layouts.currencies-chart',['CryptoCurrency' => $CryptoCurrency])
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    @if(is_null($CryptoCurrency->tradingview_id))
+                        <div class="p-5 bg-light text-center">
+                            <div class="h1">No chart here please check later</div>
+                        </div>
+                    @else
+                        @include('layouts.currencies-chart',['CryptoCurrency' => $CryptoCurrency])
+                    @endif
+
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
@@ -135,26 +156,29 @@
 
 @push('scripts')
     <script>
-        $('.action-currency').bind('keyup keydown click change',function(){
-            var fromCurrency        = $('.from-currency');
-            var quntiy              = fromCurrency.val();
+        (function(){
+            $('.action-currency, .currency').bind('keyup keydown change',function(){
+                const fromCurrency        = $('.from-currency');
+                const quntiy              = fromCurrency.val();
+                if(quntiy <= 0 ) return;
 
-            var priceFromUsd        = fromCurrency.data('price-usd');
-            var selectedCurrency    = $(".currency option:selected").data('price-usd');
+                const priceFromUsd        = fromCurrency.data('price-usd');
+                const selectedCurrency    = $(".currency option:selected").data('price-usd');
 
-            var cal = parseFloat(priceFromUsd) * parseFloat(quntiy) / parseFloat(selectedCurrency);
+                let cal = parseFloat(priceFromUsd) * parseFloat(quntiy) / parseFloat(selectedCurrency);
 
-            cal = parseFloat(cal);
+                cal = parseFloat(cal);
 
-            if(isNaN(cal)) cal = 0;
+                if(isNaN(cal)) cal = 0;
 
-            console.log(cal);
+                console.log(cal);
 
 
-            $('.to-currency').val(cal);
+                $('.to-currency').val(cal);
 
-            // alert(priceFrom);
-        });
+                // alert(priceFrom);
+            });
+        }());
     </script>
 @endpush
 

@@ -107,7 +107,8 @@ class CryptoCurrency extends Model
         'last_updated',
 
         'url',
-        'url_data'
+        'url_data',
+        'tradingview_id'
     ];
 
     public function info(){

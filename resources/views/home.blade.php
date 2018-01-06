@@ -85,7 +85,7 @@
         </div>
     </div>
     <div>
-        Last updated: Dec 16, 2017 11:15 PM UTC
+        Last updated: {!! $Currency->updated_at->toDayDateTimeString() !!} UTC
     </div>
 </div>
 @endsection

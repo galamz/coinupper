@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CryptoCurrency;
+use \Torann\Currency\Currency;
 use Illuminate\Http\Request;
-use Swap;
+//use Swap;
 
 class HomeController extends Controller
 {
@@ -15,7 +16,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
         $data['CryptoCurrency'] = $CryptoCurrency  = CryptoCurrency::orderBy('rank')->paginate(100);
+
         return view('home',$data);
     }
 

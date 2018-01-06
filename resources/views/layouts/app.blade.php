@@ -19,12 +19,13 @@
         <div class="bg-primary globe-data py-1">
             <div class="container">
                 <div class="row">
-                    <div class="col">Cryptocurrencies: <a href="{!! route('currencies.index') !!}">{!! $globalData['CryptoCurrencies'] !!}</a></div>
-                    <div class="col text-center">Markets: <a href="{!! route('markets.index') !!}">{!! $globalData['CryptoCurrencies'] !!}</a></div>
+                    <div class="col">
+                        Cryptocurrencies: <a href="{!! route('currencies.index') !!}">{!! $globalData['CryptoCurrencies'] !!}</a>
+                        Markets: <a href="{!! route('markets.index') !!}">{!! $globalData['CryptoCurrencies'] !!}</a>
+                    </div>
                     <div class="col text-center">Market Cap: <a href="#">{!! $globalData['sumCryptoCurrencies'] !!}</a></div>
                     <div class="col text-center">24h Vol: <a href="#">{!! $globalData['sumVolume_24h_usd'] !!}</a></div>
                     {{--<div class="col text-center">BTC Dominance: <a href="#">{!! $globalData['CryptoCurrencies'] !!}</a></div>--}}
-                    <div class="col text-right"><span class="badge badge-light badge-pill">ETH : ${!! $globalData['ETC_price_usd'] !!} | BTC: ${!! $globalData['BTC_price_usd'] !!}</span></div>
                 </div>
 
             </div>
@@ -62,16 +63,18 @@
                             <li class="nav-item"><a class="nav-link" href="{!! route('dashboard.index') !!}">Dashboard</a></li>
                             <li class="nav-item"><a class="nav-link" href="{!! route('login') !!}">Logout</a></li>
                         @endif
+                        @unless(is_null($globalData['AllFiatCurrencies']))
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {!! session('currency','USD') !!}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @foreach(Config::get('swap.currencies') as $currency)
-                                <a class="dropdown-item" href="{!! Request::fullUrlWithQuery(['currency' => $currency]) !!}">{!! $currency !!}</a>
+                                @foreach($globalData['AllFiatCurrencies'] as $fiatCurrency)
+                                <a class="dropdown-item" href="{!! Request::fullUrlWithQuery(['currency' => $fiatCurrency['code']]) !!}">{!! $fiatCurrency['code'] !!}</a>
                                 @endforeach
                             </div>
                         </li>
+                        @endunless
                     </ul>
                 </div>
             </div>

@@ -26,7 +26,7 @@ class CryptoCurrencyController extends Controller
 
         $data['currencies']     = $currencies       = CryptoCurrency::where('id','<>',$CryptoCurrency->id)->orderBy('rank')->get();
 
-        $dt = Data::all()->where('id_crypto_currencie','=',$CryptoCurrency->id);
+//        $dt = Data::all()->where('id_crypto_currencie','=',$CryptoCurrency->id);
 
 
         return view('currencies.show',$data);

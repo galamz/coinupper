@@ -1,9 +1,9 @@
-<!-- TradingView Widget BEGIN -->
-<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<div style="height: 500px">
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 <script type="text/javascript">
     new TradingView.widget({
         "autosize": true,
-        "symbol": "COINBASE:BTCUSD",
+        "symbol": "{!! $CryptoCurrency->tradingview_id !!}",
         "interval": "D",
         "timezone": "Etc/UTC",
         "theme": "Light",
@@ -15,4 +15,4 @@
         "hideideas": true
     });
 </script>
-<!-- TradingView Widget END -->
+</div>

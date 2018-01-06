@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\CryptoCurrency;
+use App\Currencies;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -30,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
             $sumCryptoCurrencies    = number_format($DataBar->sumCryptoCurrencies,2,',','.');
             $sumVolume_24h_usd      = number_format($DataBar->sumVolume_24h_usd,2,',','.');
 
+            $AllFiatCurrencies = Currencies::all()->where('exchange_rate','>',0);
+
 
             $BTC_price  = CryptoCurrency::whereSymbol('BTC')->orderBy('id')->first(['price_usd']);
             $ETH_price  = CryptoCurrency::whereSymbol('ETH')->orderBy('id')->first(['price_usd']);
@@ -42,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
             $BTC_price_usd          = 0;
             $ETH_price_usd          = 0;
             $sumVolume_24h_usd      = 0;
+            $AllFiatCurrencies      = null;
 
         }
 
@@ -51,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
             'BTC_price_usd'         => $BTC_price_usd,
             'ETC_price_usd'         => $ETH_price_usd,
             'sumVolume_24h_usd'     => $sumVolume_24h_usd,
+            'AllFiatCurrencies'     => $AllFiatCurrencies,
         ];
 
         View::share('globalData', $globalData);
