@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title',$CryptoCurrency->name.' ('.$CryptoCurrency->symbol.') to USD, charts, market cap, and other metrics | '.config('app.name'))
-@section('description','Get Bitcoin price, charts, and other cryptocurrency info')
+@section('title',$CryptoCurrency->name.' ('.$CryptoCurrency->symbol.') price, charts, '.$CryptoCurrency->symbol.' to USD | '.config('app.name'))
+@section('description', $CryptoCurrency->name.' price, charts, and other cryptocurrency info')
 @section('canonical',route('currencies.show',['slug' => $CryptoCurrency->slug]))
 
 @section('content')
